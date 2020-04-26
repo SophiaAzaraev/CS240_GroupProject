@@ -24,11 +24,35 @@ std::vector<std::string> generate_data(int len){
 	return data;
 	 
 }
+//simple brute force
+//lowercase letters
+const char lowerCase[26] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+void options(unsigned int length, std::vector<std::string> password){
+  if(length==0){
+    std::cout <<password <<"\n";
+    return;
+  }
+  for(unsigned int i = 0; i<26; i++){
+    std::vector<std::string> appended = password.push_back (lowerCase[i]);
+    options(length-1, appended);
+  }
+}
+void crackPassword(){
+  while(1){
+    static unsigned int stringlength = 1;
+    options(stringlength, {""});
+    stringlength++;
+  }
+}
+
 
 int main(int argc, char *argv[]){
-	std::vector<std::string> data = generate_data(10);
+        std::vector<std::string> data = generate_data(6);
 	for(std::vector<std::string>::iterator it = data.begin(); it != data.end(); it++){
 		// call simple brute force
+	  
+	  crackPassword();
+	  return 0;
 	}
 }
 
