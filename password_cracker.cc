@@ -30,7 +30,22 @@ std::vector<std::string> generate_data(int data_size){
 	 
 }
 
+//generate permutations of length 6 from alphabet and feed to brute force checker 
+void permute(char *perm, int startPos, std::string alphabet){
+	if(startPos == 6) {
+		//give to brute force
+		std::cout << perm << std::endl;
+	}
+	else{
+		for(int i=0; i<alphabet.length(); i++){
+			perm[startPos]=alphabet[i];
+			permute(perm, startPos+1, alphabet);
+		}
+	}
 
+}
+
+/*
 std::string permute(char[] alphabet, std::string prefix, int n, int k){
 	if(k == 0){
 		return prefix;
@@ -44,7 +59,8 @@ std::string permute(char[] alphabet, std::string prefix, int n, int k){
 
 void print(char[] alphabet, int k, int n){
 	permute(alphabet, "", n, k);
-}
+}*/
+
 /*
 // Simple brute-force password cracker
 // Given: A list of 1000 password to crack
@@ -90,16 +106,18 @@ void options(unsigned int length, std::vector<std::string> password){
 */
 
 int main(int argc, char *argv[]){
-        std::vector<std::string> data = generate_data(5000);
-	char alphabet[26] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
-	int k = 1;
-	print(alphabet, k, 5); 
+        //std::vector<std::string> data = generate_data(5000);
+	//char alphabet[26] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+	//int k = 1;
+	//print(alphabet, k, 5); 
 
 	/*
 	for(int i = 0; i < data.size(); i++){
 		simple_brute_force(data.at(i));
 	}
 	*/
+	char permutation[7];
+	permute(permutation, 0, "abcdefg");
 	return 0;
 }
 
