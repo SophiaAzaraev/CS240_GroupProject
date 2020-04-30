@@ -5,6 +5,7 @@
 #include <cstring>
 #include <iostream>
 #include <ostream>
+#include <fstream>
 #include <string_view>
 #include<bits/stdc++.h>
 
@@ -16,25 +17,47 @@
 std::vector<std::string> generate_data(int data_size){
 	std::string str = "abcdefghijklmnopqrstuvwxyz";
 	std::vector<std::string> data;
-	for(int i = 0; i <= data_size; ++i){
+	std::ofstream outputFile;
+	outputFile.open("passwords.txt");
+	for(int i = 0; i < data_size; ++i){
 		std::string entry;
 		int pos;
-		int size = (rand() % 7) + 1;
+		int size = 3;
 		while(entry.size() != size){
 			pos = ((rand() % (str.size() - 1)));
 			entry += str.substr(pos,1);
 			}
 		data.push_back(entry);
-		}
+		outputFile << entry;
+		outputFile << "\n";
+	}
+	//outputFile << data;
+	outputFile.close();
 	return data;
 	 
 }
 
+
+//takes permutations as permute generates them and compares to password until it gets a match
+void brute_force(char *perm, std::string fileName){
+
+	std::ifstream file("passwords.txt");
+	std::string currentPass;
+	
+	getline(file, currentPass);
+	std::string attempt(perm);
+//	std::cout << currentPass << std::endl;
+
+	if(attempt.compare(currentPass) == 0)
+		std::cout << "correct" << std::endl;
+}
+
 //generate permutations of length 6 from alphabet and feed to brute force checker 
 void permute(char *perm, int startPos, std::string alphabet){
-	if(startPos == 6) {
+	if(startPos == 3) {
 		//give to brute force
-		std::cout << perm << std::endl;
+		//std::cout << perm << std::endl;
+		brute_force(perm, "passwords.txt");
 	}
 	else{
 		for(int i=0; i<alphabet.length(); i++){
@@ -45,21 +68,7 @@ void permute(char *perm, int startPos, std::string alphabet){
 
 }
 
-/*
-std::string permute(char[] alphabet, std::string prefix, int n, int k){
-	if(k == 0){
-		return prefix;
-	}
-	for(int i = 0; i < n; i++){
-		std::string newPrefix;
-		newPrefix = prefix + alphabet[i];
-		permute(alphabet, newPrefix, n, k - 1);
-	}
-}
 
-void print(char[] alphabet, int k, int n){
-	permute(alphabet, "", n, k);
-}*/
 
 /*
 // Simple brute-force password cracker
@@ -106,7 +115,7 @@ void options(unsigned int length, std::vector<std::string> password){
 */
 
 int main(int argc, char *argv[]){
-        //std::vector<std::string> data = generate_data(5000);
+        std::vector<std::string> data = generate_data(5000);
 	//char alphabet[26] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
 	//int k = 1;
 	//print(alphabet, k, 5); 
@@ -116,8 +125,8 @@ int main(int argc, char *argv[]){
 		simple_brute_force(data.at(i));
 	}
 	*/
-	char permutation[7];
-	permute(permutation, 0, "abcdefg");
+	char permutation[4];
+	permute(permutation, 0, "abcdefghijklmnopqrstuvwxyz");
 	return 0;
 }
 
