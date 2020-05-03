@@ -1,9 +1,9 @@
 # CS240 Team Project: Password Cracking Algorithms
 ## Abigail McHugh, Amelia Chesebro, and Sophia Azaraev
 
-**In 2019, over 160 million sensitive records were exposed as the result of data breaches (statistica.com). Password cracking is a common strategy for gaining access to user's information**.
+**In 2019, over 160 million sensitive records were exposed as the result of data breaches (statistica.com). Password cracking is a common strategy for gaining access to user's information.
 For our project, we compared two types of brute force attacks: a simple brute force attack, and a
-dictionary attack. 
+dictionary attack.**
 
 ### _Generating fake data_
 We created fake, random passwords of six lowercase letters in the `generate_data()` function, which wrote passwords to a text file:
