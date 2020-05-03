@@ -37,16 +37,12 @@ void  generate_data(int data_size){
 
 //takes permutations as permute generates them and compares to password until it gets a match
 void brute_force(char *perm, std::string fileName){
-
 	std::ifstream file("passwords.txt");
 	std::string currentPass;
-	
 	getline(file, currentPass);
 	std::string_view attempt(perm);
-//	std::cout << currentPass << std::endl;
-
 	if(attempt.compare(currentPass) == 0)
-		std::cout << "correct" << std::endl;
+		return;
 }
 
 //generate permutations of length 6 from alphabet and feed to brute force checker 
@@ -54,7 +50,7 @@ void  permute(char *perm, int startPos, std::string alphabet, std::string passwo
 	if(startPos == 3) {
 		std::string permString(perm);
 		if(password.compare(permString)==0){}
-			//std::cout << password << " was cracked successfully" << std::endl;
+			return;
 	}
 	else{
 		for(int i=0; i<alphabet.length(); i++){
@@ -66,31 +62,34 @@ void  permute(char *perm, int startPos, std::string alphabet, std::string passwo
 }
 
 int main(int argc, char *argv[]){
-	// generate n passwords to break
+	// generate n passwords
+	int num_passwords = 5000;
 	std::string alphabet = "abcdefghijklmnopqrstuvwxyz";
 
-       	generate_data(5000);
+       	generate_data(num_passwords);
 
 	char permutation[7];
 	std::ifstream file("passwords.txt");
 	std::string guess;
 	auto start = std::chrono::high_resolution_clock::now();
+
+	std::cout << "----------Cracking paswords via brute force----------" << std::endl;
+
 	while(getline(file, guess)){
-	
 		permute(permutation, 0, alphabet, guess);
 
 	}
+	
+	std::cout << num_passwords << " passwords cracked!" << std::endl;
 	auto stop = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<double> diff= (stop - start);
-	auto avgBF = diff.count()/ 5000;
+	auto totalTimeBF = diff.count();
+	auto avgTimeBF = diff.count()/ 5000;
 
-	std::cout << "brute force average time per password is " << std::to_string(avgBF) << " seconds" << std::endl;
+	std::cout << "Total time to crack passwords: " << totalTimeBF << std::endl; 
+	std::cout << "brute force average time per password is " << std::to_string(avgTimeBF) << " seconds" << std::endl;
 
 	return 0;
-	
-
-
-
 }
 
 	
