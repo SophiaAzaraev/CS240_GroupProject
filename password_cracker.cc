@@ -61,7 +61,9 @@ void  permute(char *perm, int startPos, std::string alphabet, std::string passwo
 		//std::cout << perm << std::endl;
 		//brute_force(perm, "passwords.txt");
 		std::string permString(perm);
-		if(password.compare(permString)==0){}
+		if(password.compare(permString)==0){
+			return;
+		}
 			//std::cout << password << " was cracked successfully" << std::endl;
 	}
 	else{
