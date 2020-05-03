@@ -47,3 +47,10 @@ The `brute_force()` function used a recursive call. If the position of the strin
 		}
 	}
 
+### what abby added 5/3
+- I pulled a list of the 10,000 most used passwords from online
+- In data generator, it randomly puts 200 of these passwords into the passwords.txt file
+- Instead of each function returning void, I return a bool (because now there's a chance they don't crack the password)
+- In main, I create bfPasswordsCracked and dictPasswordsCracked. If the function returns true then it increments
+- It seems to never be reaching the "return true" loop in brute force. also it isn't letting me call the dictionary() function
+- I think both are really close, just some issues with calling stuff

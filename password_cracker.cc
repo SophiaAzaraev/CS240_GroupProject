@@ -50,19 +50,21 @@ void  generateData(int data_size, std::vector<std::string> dictionary){
 bool bruteForce(char *perm, int startPos, std::string alphabet, std::string password){
 	if(startPos == 3) {
 		std::string permString(perm);
-		if(password.compare(permString)== 0)
+		if(password.compare(permString)== 0){
+			std::cout << "here" << std::endl;
 			return true;
 	}
 	else{
 		for(int i=0; i<alphabet.length(); i++){
 			perm[startPos]=alphabet[i];
 			bruteForce(perm, startPos+1, alphabet, password);
-		}
+			}
+		}	
 	}
-	return false;
 }
+		
 
-bool dictionary(std::vector<std::string> dict, std::string password){
+bool dictionary(std::vector<std::string>& dict, std::string& password){
 	for(int i = 0; i < dict.size(); i++){
 		if(dict.at(i) == password){
 			return true;
@@ -97,7 +99,7 @@ int main(int argc, char *argv[]){
 	std::cout << "----------Cracking Paswords Via Brute Force ----------" << std::endl;
 	
 	while(getline(passwords, password)){
-		if(bruteForce(permutation, 0, alphabet, password)){
+		if(bruteForce(permutation, 0, alphabet, password) == true){
 			bfPasswordsCracked++;
 		}		
 	}
@@ -114,8 +116,8 @@ int main(int argc, char *argv[]){
 	auto dictStart = std::chrono::high_resolution_clock::now();
 	std::cout << "----------Cracking Paswords Via Dictionary ----------" << std::endl;
 
-	while(getline(file2, password2)){
-		dictionary(dict, password2);
+	while(getline(passwords, password)){
+		///dictionary(dict, password);
 	}
 
 	auto dictStop = std::chrono::high_resolution_clock::now();
