@@ -7,7 +7,7 @@
 #include <ostream>
 #include <fstream>
 #include <string_view>
-#include<bits/stdc++.h>
+
 #include <chrono>
 #include <string.h>
 
@@ -34,29 +34,18 @@ void  generate_data(int data_size){
 	outputFile.close();
 }
 
-
-//takes permutations as permute generates them and compares to password until it gets a match
-void brute_force(char *perm, std::string fileName){
-	std::ifstream file("passwords.txt");
-	std::string currentPass;
-	getline(file, currentPass);
-	std::string_view attempt(perm);
-	if(attempt.compare(currentPass) == 0)
-		return;
-}
-
 //generate permutations of length 6 from alphabet and feed to brute force checker 
-void  permute(char *perm, int startPos, std::string alphabet, std::string password){
-	if(startPos == 3) {
+void  brute_force(char *perm, int startPos, std::string alphabet, std::string password){
+	if(startPos == 6) {
 		std::string permString(perm);
 		
-		if(password.compare(permString)==0)
+		if(password.compare(permString )== 0)
 			return;
 	}
 	else{
 		for(int i=0; i<alphabet.length(); i++){
 			perm[startPos]=alphabet[i];
-			permute(perm, startPos+1, alphabet, password);
+			brute_force(perm, startPos+1, alphabet, password);
 		}
 	}
 
@@ -64,7 +53,7 @@ void  permute(char *perm, int startPos, std::string alphabet, std::string passwo
 
 int main(int argc, char *argv[]){
 	// generate n passwords
-	int num_passwords = 5000;
+	int num_passwords = 1000;
 	std::string alphabet = "abcdefghijklmnopqrstuvwxyz";
 
        	generate_data(num_passwords);
@@ -77,7 +66,7 @@ int main(int argc, char *argv[]){
 	std::cout << "----------Cracking paswords via brute force----------" << std::endl;
 
 	while(getline(file, guess)){
-		permute(permutation, 0, alphabet, guess);
+		brute_force(permutation, 0, alphabet, guess);
 
 	}
 	
