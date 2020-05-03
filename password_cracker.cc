@@ -49,7 +49,8 @@ void brute_force(char *perm, std::string fileName){
 void  permute(char *perm, int startPos, std::string alphabet, std::string password){
 	if(startPos == 3) {
 		std::string permString(perm);
-		if(password.compare(permString)==0){}
+		
+		if(password.compare(permString)==0)
 			return;
 	}
 	else{

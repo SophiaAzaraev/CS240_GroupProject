@@ -47,6 +47,3 @@ The brute__force function used a recursive call. If the position of the string =
 		}
 	}
 
-
-
-
