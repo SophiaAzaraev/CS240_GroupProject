@@ -1,1 +1,2 @@
 # CS240_GroupProject
+We are comparing a simple brute force password cracker algorithm to a dictionary brute force algorithm. Normally a dictionary would be quicker as the human brain is much more predictable than a randomized document of passwords of a certain length. The dictionary contains some popular passwords at the start. However, we think that the dictionary will be slower in our comparisons as we have a randomized file of passwords generated of a certain length. Therefore the simple brute force algorithm would be quicker for us. 
