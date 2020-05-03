@@ -5,55 +5,92 @@
 #include <cstring>
 #include <iostream>
 #include <ostream>
+#include <fstream>
+#include <string_view>
+#include<bits/stdc++.h>
+#include <chrono>
+#include <string.h>
 
-#define PASSWORD_LEN 6
+#define PASSWORD_LIMIT 6
 
-// Generate random data to feed to simple brute force and dictionary brute force password crackers
-std::vector<std::string> generate_data(int len){
+// Generate random data to feed to simple brute force and dictionary brute force 
+// password crackers. Function returns a vector of lowercase alphabetic passwords
+// of length 6.
+void  generate_data(int data_size){
 	std::string str = "abcdefghijklmnopqrstuvwxyz";
-	std::vector<std::string> data;
-	for(int i = 0; i <= len; ++i){
+	std::ofstream outputFile;
+	outputFile.open("passwords.txt");
+	for(int i = 0; i < data_size; ++i){
 		std::string entry;
 		int pos;
-		while(entry.size() != PASSWORD_LEN){
+		int size = 6;
+		while(entry.size() != size){
 			pos = ((rand() % (str.size() - 1)));
 			entry += str.substr(pos,1);
 			}
-		data.push_back(entry);
-		}
-	return data;
-	 
-}
-//simple brute force
-//lowercase letters
-const char lowerCase[26] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
-void options(unsigned int length, std::vector<std::string> password){
-  if(length==0){
-    std::cout <<password <<"\n";
-    return;
-  }
-  for(unsigned int i = 0; i<26; i++){
-    std::vector<std::string> appended = password.push_back (lowerCase[i]);
-    options(length-1, appended);
-  }
-}
-void crackPassword(){
-  while(1){
-    static unsigned int stringlength = 1;
-    options(stringlength, {""});
-    stringlength++;
-  }
+		outputFile << entry;
+		outputFile << "\n";
+	}
+	outputFile.close();
 }
 
+
+//takes permutations as permute generates them and compares to password until it gets a match
+void brute_force(char *perm, std::string fileName){
+	std::ifstream file("passwords.txt");
+	std::string currentPass;
+	getline(file, currentPass);
+	std::string_view attempt(perm);
+	if(attempt.compare(currentPass) == 0)
+		return;
+}
+
+//generate permutations of length 6 from alphabet and feed to brute force checker 
+void  permute(char *perm, int startPos, std::string alphabet, std::string password){
+	if(startPos == 3) {
+		std::string permString(perm);
+		
+		if(password.compare(permString)==0)
+			return;
+	}
+	else{
+		for(int i=0; i<alphabet.length(); i++){
+			perm[startPos]=alphabet[i];
+			permute(perm, startPos+1, alphabet, password);
+		}
+	}
+
+}
 
 int main(int argc, char *argv[]){
-        std::vector<std::string> data = generate_data(6);
-	for(std::vector<std::string>::iterator it = data.begin(); it != data.end(); it++){
-		// call simple brute force
-	  
-	  crackPassword();
-	  return 0;
+	// generate n passwords
+	int num_passwords = 5000;
+	std::string alphabet = "abcdefghijklmnopqrstuvwxyz";
+
+       	generate_data(num_passwords);
+
+	char permutation[7];
+	std::ifstream file("passwords.txt");
+	std::string guess;
+	auto start = std::chrono::high_resolution_clock::now();
+
+	std::cout << "----------Cracking paswords via brute force----------" << std::endl;
+
+	while(getline(file, guess)){
+		permute(permutation, 0, alphabet, guess);
+
 	}
+	
+	std::cout << num_passwords << " passwords cracked!" << std::endl;
+	auto stop = std::chrono::high_resolution_clock::now();
+	std::chrono::duration<double> diff= (stop - start);
+	auto totalTimeBF = diff.count();
+	auto avgTimeBF = diff.count()/ 5000;
+
+	std::cout << "Total time to crack passwords: " << totalTimeBF << std::endl; 
+	std::cout << "brute force average time per password is " << std::to_string(avgTimeBF) << " seconds" << std::endl;
+
+	return 0;
 }
 
 	
