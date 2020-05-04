@@ -6,7 +6,7 @@ For our project, we compared two types of brute force attacks: a simple brute fo
 dictionary attack.**
 
 ### _Generating fake data_
-We created fake, random passwords of lowercase letters, passwordSize length in the `generate_data()` function, which wrote passwords to the text file "passwords.txt": 
+We created fake, random passwords of lowercase letters, passwordSize length in the `generateData()` function, which wrote passwords to the text file "passwords.txt": 
 
 	void generateData(int data_size, std::vector<std::string> dictionary, int passwordSize){
 	std::string str = "abcdefghijklmnopqrstuvwxyz";
@@ -54,7 +54,7 @@ The `bruteforceAttack()` function used a recursive call. If the position of the 
 	}
 
 ### _Dictionary attack password cracker_
-The `dictionaryAttack()` method is simple. It loops through each line in the dictionary vector, and if the password matches dictionary.at(i), it returns. If the password goes through the entire vector without a match, the function returns false.
+The `dictionaryAttack()` method is simple. It looped through each line in the dictionary vector, and if the password matches dictionary.at(i), it returned. If the password goes through the entire vector without a match, the function returned false.
 
 	bool dictionaryAttack(std::vector<std::string>& dict, std::string& password){
 		for(int i = 0; i < dict.size(); i++){
@@ -68,4 +68,16 @@ The `dictionaryAttack()` method is simple. It loops through each line in the dic
 While the `bruteForceAttack()` function was void, `dictionaryAttack()` returns a bool. This is because `bruteForceAttack()` generates all permutations, so there is guarenteed to be a match. However, `dictionaryAttack()` only has finite set of guesses, which no guarentee that it will match our random strings created in `generateData()`. 
 
 ## _Main and program flow_
+In main, we called `generateData()`, `bruteForceAttack()`, and `dictionaryAttack()`, to test the speed and effectiveness of simple brute force and dictionary password cracking algorithms:
+	- Read and validate-command line arguments.
+	- Loop through dictionary.txt file found online. Add passwords that meet criteria (i.e, are all letters and have passwordSize 	length).
+	- Call `generateData()` with passwordSize, dataSize, and the modified dictionary vector as arguments
+	- Start first clock using `std::chrono()`. Loop through each line in passwords.txt:
+		- When `bruteForce()` cracks the password, return.
+	- Stop first clock.
+	- Output number of passwords cracked, total time to crack passwords, and average time per password.
+	- Start second clock using `std::chrono()`. Loop through each line in passwords.txt:
+		- If `dictionaryAttack()` cracks the password, increment dictPasswordsCracked.
+	- Stop second clock.
+	- Output number of passwords cracked, total time to crack passwords, and average time per password.
 
