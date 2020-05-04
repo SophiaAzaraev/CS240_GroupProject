@@ -72,6 +72,31 @@ bool dictionaryAttack(std::vector<std::string>& dict, std::string& password){
 }
 
 int main(int argc, char *argv[]){
+	if(argc < 2){
+		std::cerr << "usage: NUM_PASSWORDS PASSWORD_LEN" << std::endl;
+		return EXIT_FAILURE;
+	}
+
+	char* end1;
+	char* end2;
+	int correctInput1 = strtol(argv[1], &end1, 10);
+	int correctInput2 = strtol(argv[2], &end2, 10);
+
+	if(*end1 != '\0'){
+		std::cerr << "bad integer value " << argv[1] << "for number of passwords cracked" << std::endl;
+	}
+	if(*end2 != '\0'){
+		std::cerr << "bad integer value" << argv[2] << "for length of each password" << std::endl;
+	}
+	
+	int numPasswords = 0;
+	int passwordSize = 0;
+	
+	for(int i = 2; i < argc; i++){
+		numPasswords += std::atoi(argv[i-1]);
+		passwordSize += std::atoi(argv[i]);
+	}
+	
 	std::ifstream dictionary("dictionary.txt");
 	std::vector<std::string> dict;
 	std::string entry;
@@ -81,22 +106,7 @@ int main(int argc, char *argv[]){
 			}
 	}
 
-	int numPasswords = 0;
-	int passwordSize = 0;
-
-	if(isdigit(argv[1]) || isdigit(argv[2])){
-		std::cout << "bad" << std::endl;
-	}
-	
-	// convert args to ints
-	for(int i = 2; i < argc; i++){
-		numPasswords += std::atoi(argv[i-1]);
-		passwordSize += std::atoi(argv[i]);
-	}
-
 	std::string alphabet = "abcdefghijklmnopqrstuvwxyz";
-
-	std::cout << "here" << std::endl;
 
        	generateData(numPasswords, dict, passwordSize);
 	
@@ -105,7 +115,7 @@ int main(int argc, char *argv[]){
 	std::string password;
 
 	auto bfStart = std::chrono::high_resolution_clock::now();
-	std::cout << "----------Cracking Paswords Via Brute Force ----------" << std::endl;
+	std::cout << "----------Cracking Paswords ----------" << std::endl;
 	
 	while(getline(passwords, password)){
 		bruteForceAttack(permutation, 0, alphabet, password, passwordSize);
@@ -116,9 +126,9 @@ int main(int argc, char *argv[]){
 	auto bfTotalTime = bfDiff.count();
 	auto bfAvgTime = bfTotalTime / numPasswords;
 
-	std::cout << "---------- Brute Force Results ----------" << std::endl;
+	std::cout << "---------- Brute Force Attack Results ----------" << std::endl;
 	std::cout << "Passwords Cracked: " << numPasswords << std::endl;
-	std::cout << "Total Time to Crack Passwords (s): " << bfTotalTime << std::endl; 
+	std::cout << "Total Time to Crack Passwords (ms): " << bfTotalTime << std::endl; 
 	std::cout << "Time per Password Cracked (ms):  " << bfAvgTime << std::endl;
 
 
@@ -127,7 +137,6 @@ int main(int argc, char *argv[]){
 	int dictPasswordsCracked = 0;
 
 	auto dictStart = std::chrono::high_resolution_clock::now();
-	std::cout << "----------Cracking Paswords Via Dictionary ----------" << std::endl;
 
 	while(getline(file2, password)){
 		if(dictionaryAttack(dict, password))
@@ -139,9 +148,9 @@ int main(int argc, char *argv[]){
 	auto dictTotalTime = dictDiff.count();
 	auto dictAvgTime = dictTotalTime / numPasswords;
 
-	std::cout << "---------- Dictionary ---------" << std::endl;
+	std::cout << "---------- Dictionary Attack Results ---------" << std::endl;
 	std::cout << "Passwords Cracked: " << dictPasswordsCracked << std::endl;
-	std::cout << "Total Time To Crack Passwords (s): " << dictTotalTime << std::endl;
+	std::cout << "Total Time To Crack Passwords (ms): " << dictTotalTime << std::endl;
 	std::cout << "Time per Password Cracked (ms): " << dictAvgTime << std::endl;
 	
 
