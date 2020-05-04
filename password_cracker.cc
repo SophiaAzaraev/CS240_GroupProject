@@ -76,7 +76,6 @@ int main(int argc, char *argv[]){
 		std::cerr << "usage: NUM_PASSWORDS PASSWORD_LEN" << std::endl;
 		return EXIT_FAILURE;
 	}
-
 	char* end1;
 	char* end2;
 	int correctInput1 = strtol(argv[1], &end1, 10);
