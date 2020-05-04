@@ -73,11 +73,11 @@ In main, we called `generateData()`, `bruteForceAttack()`, and `dictionaryAttack
 - Loop through dictionary.txt file found online. Add passwords that meet criteria (i.e, are all letters and have passwordSize 	length).
 - Call `generateData()` with passwordSize, dataSize, and the modified dictionary vector as arguments
 - Start first clock using `std::chrono()`. Loop through each line in passwords.txt:
-		- When `bruteForce()` cracks the password, return.
+    - When `bruteForce()` cracks the password, return.
 - Stop first clock.
 - Output number of passwords cracked, total time to crack passwords, and average time per password.
 - Start second clock using `std::chrono()`. Loop through each line in passwords.txt:
-	- If `dictionaryAttack()` cracks the password, increment dictPasswordsCracked.
+    - If `dictionaryAttack()` cracks the password, increment dictPasswordsCracked.
 - Stop second clock.
 - Output number of passwords cracked, total time to crack passwords, and average time per password.
 
