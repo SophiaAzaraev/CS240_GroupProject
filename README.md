@@ -23,7 +23,7 @@ We created fake, random passwords of lowercase letters, passwordSize length in t
 		outputFile << entry << std::endl;
 
 		int rand = std::rand() % 5 + 1;
-		if(i % 5 == 0){
+		if(i % 5 == 0 && i < dictionary.size()){
 			outputFile << dictionary.at(i) << std::endl;
 		}
 	}
