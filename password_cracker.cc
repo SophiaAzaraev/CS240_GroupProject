@@ -100,7 +100,7 @@ int main(int argc, char *argv[]){
 	std::vector<std::string> dict;
 	std::string entry;
 	while(getline(dictionary, entry)){
-		if(entry.length() == 4 && isAlpha(entry)){
+		if(entry.length() == passwordSize && isAlpha(entry)){
 			dict.push_back(entry);
 			}
 	}
