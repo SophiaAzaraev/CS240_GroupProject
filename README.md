@@ -5,7 +5,7 @@
 For our project, we compared two types of brute force attacks: a simple brute force attack, and a
 dictionary attack.**
 
-## _Generating fake data_
+## _Generating fake data_ (Abby)
 We created fake, random passwords of lowercase letters, passwordSize length in the `generateData()` function, which wrote passwords to the text file "passwords.txt": 
 
 	void generateData(int data_size, std::vector<std::string> dictionary, int passwordSize){
@@ -32,7 +32,7 @@ We created fake, random passwords of lowercase letters, passwordSize length in t
 
 This function allowed us to control the number of passwords we wanted to crack as well as the length of each password. Additionally, by utilizing `rand()`, we were able to randomly add a password from the most common 10,000 passwords, found online (xato.net). This allowed us to test out `dictionaryAttack()` function.
 
-## _Simple brute force attack password cracker_
+## _Simple brute force attack password cracker_ (Brute Force)
 The `bruteForceAttack()` function shows our simple brute force algorithmn.
 
 In main, we called `generateData()` with the number of passwords we wanted to generate. We then opened up the passwords.txt file written to by `generateData()`, and looped through each line in passwords.txt, calling `bruteForceAttack(permutation, startPosition, alphabet, guess, passwordSize)`, with alphabet being the letters used to make the permutations, the startPosition being set to 0, the password being read from passwords.txt, and the passwordSize specified in main.
@@ -53,7 +53,7 @@ The `bruteforceAttack()` function used a recursive call. If the position of the 
 		}	
 	}
 
-## _Dictionary attack password cracker_
+## _Dictionary attack password cracker_ (Abby)
 The `dictionaryAttack()` method is simple. It looped through each line in the dictionary vector, and if the password matches dictionary.at(i), it returned. If the password goes through the entire vector without a match, the function returned false.
 
 	bool dictionaryAttack(std::vector<std::string>& dict, std::string& password){
@@ -81,4 +81,12 @@ In main, we called `generateData()`, `bruteForceAttack()`, and `dictionaryAttack
 - Stop second clock.
 - Output number of passwords cracked, total time to crack passwords, and average time per password for `dictionaryAttack()`.
 
-## _Results_
+## _Results_ 
+(Amelia)
+Maximum number of operations for brute force = (number of permutations) * (number of passwords)
+Maximum number of operations for dictionary = (size of dictionary) * (number of passwords)
+(Sophia - graphs)
+How to test brute force and dictionary:
+- Keep password length at 4
+- numPasswords: 10, 100, 1000, 10000
+(Abby -> which one is better?)
