@@ -22,7 +22,6 @@ We created fake, random passwords of lowercase letters, passwordSize length in t
 		}
 		outputFile << entry << std::endl;
 
-		int rand = std::rand() % 5 + 1;
 		if(i % 5 == 0 && i < dictionary.size()){
 			outputFile << dictionary.at(i) << std::endl;
 		}
@@ -30,7 +29,7 @@ We created fake, random passwords of lowercase letters, passwordSize length in t
 	outputFile.close();
 }
 
-This function allowed us to control the number of passwords we wanted to crack as well as the length of each password. Additionally, by utilizing `rand()`, we were able to randomly add a password from the most common 10,000 passwords, found online (xato.net). This allowed us to test out `dictionaryAttack()` function.
+This function allowed us to control the number of passwords we wanted to crack as well as the length of each password. Additionally, we added a password from the most common 10,000 passwords, found online (xato.net) for every fifth entry. This allowed us to test out `dictionaryAttack()` function.
 
 ## _Simple brute force attack password cracker_
 The `bruteForceAttack()` function shows our simple brute force algorithmn.
