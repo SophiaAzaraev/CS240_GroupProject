@@ -38,7 +38,7 @@ void generateData(int data_size, std::vector<std::string> dictionary, int passwo
 		outputFile << entry << std::endl;
 
 		int rand = std::rand() % 5 + 1;
-		if(i % 5 == 0){
+		if(i % 5 == 0 && i<dictionary.size()){
 			outputFile << dictionary.at(i) << std::endl;
 		}
 	}
