@@ -88,11 +88,16 @@ In main, we called `generateData()`, `bruteForceAttack()`, and `dictionaryAttack
 - **Number of permutations for password length 6**: 165,765,600
 - **Maximum number of operations for dictionary** = (size of dictionary) * (number of passwords)
 
-*_This graph shows how long the brute force attack took to crack one password when given 10, 100, 1000, and 10000 passwords all of length 4._*
+**_This graph shows how long the brute force attack took to crack one password when given 10, 100, 1000, and 10000 passwords all of length 4._**
 ![](images/Brute1.png)
-*_This graph shows the same data except for a dictionary attack instead. This was also given 10, 100, 1000, 10000 passwords all of length 4. Each data point is labeled with how many passwords the algorithm was able to crack._*
+**_This graph shows the same data except for a dictionary attack instead. This was also given 10, 100, 1000, 10000 passwords all of length 4. Each data point is labeled with how many passwords the algorithm was able to crack._**
 ![](images/Dic1.png)
-*_This graph is the same brute force algorithm, but the time shown is the total amount of time it took for the given amount of passwords to be cracked. _*
+**_This graph is the same brute force algorithm, but the time shown is the total amount of time it took for the given amount of passwords to be cracked. _**
 ![](images/Brute2.png)
-*_This graph is the dictionary attack algorithm, the time shown is the total amount of time it took for the labeled amount of passwords to be cracked. _*
+**_This graph is the dictionary attack algorithm, the time shown is the total amount of time it took for the labeled amount of passwords to be cracked. _**
 ![](images/Dic2.png)
+
+## _Conclusions_
+The "better" algoritm depends on why it is being used. In our demo, we were concerned more with the success rate than the time. In real-world applications, however, hackers would be more inclined to use the dictionary method. Our passwords were randomly generated and so the dictionary attack was less likely to guess them. Real users, however, more often create predictable passwords than can be easily guessed by a dictionary, and would take a long time to crack via brute force. As shown above, the number of permutations for length 4 passwords, all lowercase letters was 358,800, while just going up to length 6 increased the number to 165,765,000. This number would increase even more if the passwords had uppercase letters, numbers, or symbols.
+
+Ultimately, the "better" algorithm is determined by the purpose of its use. 
