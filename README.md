@@ -86,6 +86,15 @@ In main, we called `generateData()`, `bruteForceAttack()`, and `dictionaryAttack
 Maximum number of operations for brute force = (number of permutations) * (number of passwords)
 Maximum number of operations for dictionary = (size of dictionary) * (number of passwords)
 (Sophia - graphs)
+
+This graph shows how long the brute force attack took to crack one password when given 10, 100, 1000, and 10000 passwords all of length 4.
+![](images/Brute1.png)
+This graph shows the same data except for a dictionary attack instead. This was also given 10, 100, 1000, 10000 passwords all of length 4. Each data point is labeled with how many passwords the algorithm was able to crack.
+![](images/Dic1.png)
+This graph is the same brute force algorithm, but the time shown is the total amount of time it took for the given amount of passwords to be cracked. 
+![](images/Brute2.png)
+This graph is the dictionary attack algorithm, the time shown is the total amount of time it took for the labeled amount of passwords to be cracked. 
+![](images/Dic2.png)
 How to test brute force and dictionary:
 - Keep password length at 4
 - numPasswords: 10, 100, 1000, 10000
