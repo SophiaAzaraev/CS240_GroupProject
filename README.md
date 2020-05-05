@@ -64,7 +64,7 @@ The `dictionaryAttack()` method is simple. It looped through each line in the di
 		return false;
 	}
 
-While the `bruteForceAttack()` function was void, `dictionaryAttack()` returns a bool. This is because `bruteForceAttack()` generates all permutations, so there is guarenteed to be a match. However, `dictionaryAttack()` only has finite set of guesses, which no guarentee that it will match our random strings created in `generateData()`. 
+While the `bruteForceAttack()` function was void, `dictionaryAttack()` returns a bool. This is because `bruteForceAttack()` generates all permutations, so there is guaranteed to be a match. However, `dictionaryAttack()` only has finite set of guesses, with no guarentee that it will match our random strings created in `generateData()`. 
 
 ## _Main and program flow_
 In main, we called `generateData()`, `bruteForceAttack()`, and `dictionaryAttack()`, to test the speed and effectiveness of simple brute force and dictionary password cracking algorithms:
@@ -87,13 +87,13 @@ In main, we called `generateData()`, `bruteForceAttack()`, and `dictionaryAttack
 - **Number of permutations for password length 6**: 165,765,600
 - **Maximum number of operations for dictionary** = (size of dictionary) * (number of passwords)
 
-**_This graph shows how long the brute force attack took to crack one password when given 10, 100, 1000, and 10000 passwords all of length 4._**
+**This graph shows how long the brute force attack took to crack one password when given 10, 100, 1000, and 10000 passwords all of length 4.**
 ![](images/Brute1.png)
-**_This graph shows the same data except for a dictionary attack instead. This was also given 10, 100, 1000, 10000 passwords all of length 4. Each data point is labeled with how many passwords the algorithm was able to crack._**
+**This graph shows the same data except for a dictionary attack instead. This was also given 10, 100, 1000, 10000 passwords all of length 4. Each data point is labeled with how many passwords the algorithm was able to crack.**
 ![](images/Dic1.png)
-**_This graph is the same brute force algorithm, but the time shown is the total amount of time it took for the given amount of passwords to be cracked. _**
+**This graph is the same brute force algorithm, but the time shown is the total amount of time it took for the given amount of passwords to be cracked. **
 ![](images/Brute2.png)
-**_This graph is the dictionary attack algorithm, the time shown is the total amount of time it took for the labeled amount of passwords to be cracked. _**
+**This graph is the dictionary attack algorithm, the time shown is the total amount of time it took for the labeled amount of passwords to be cracked. **
 ![](images/Dic2.png)
 
 ## _Conclusions_
