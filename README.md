@@ -82,11 +82,11 @@ In main, we called `generateData()`, `bruteForceAttack()`, and `dictionaryAttack
 - Output number of passwords cracked, total time to crack passwords, and average time per password for `dictionaryAttack()`.
 
 ## _Results_ 
-**Maximum number of operations for brute force** = (number of permutations) * (number of passwords)
-**Number of permutations** = 26!/(26-passwordLength)!
-**Number of permutations for password length 4**: 358,800
-**Number of permutations for password length 6**: 165,765,600
-**Maximum number of operations for dictionary** = (size of dictionary) * (number of passwords)
+- **Maximum number of operations for brute force** = (number of permutations) * (number of passwords)
+- **Number of permutations** = 26!/(26-passwordLength)!
+- **Number of permutations for password length 4**: 358,800
+- **Number of permutations for password length 6**: 165,765,600
+- **Maximum number of operations for dictionary** = (size of dictionary) * (number of passwords)
 
 This graph shows how long the brute force attack took to crack one password when given 10, 100, 1000, and 10000 passwords all of length 4.
 ![](images/Brute1.png)
