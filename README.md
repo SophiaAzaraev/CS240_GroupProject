@@ -27,9 +27,9 @@ We created fake, random passwords of lowercase letters, passwordSize length in t
 		}
 	}
 	outputFile.close();
-}
+	}
 
-This function allowed us to control the number of passwords we wanted to crack as well as the length of each password. Additionally, we added a password from the most common 10,000 passwords, found online (xato.net) for every fifth entry. This allowed us to test out `dictionaryAttack()` function.
+This function allowed us to control the number of passwords we wanted to crack as well as the length of each password. Additionally, we added a password from the most common 10,000 passwords, found online (see below for link) for every fifth entry. This allowed us to test out `dictionaryAttack()` function.
 
 ## _Simple brute force attack password cracker_
 The `bruteForceAttack()` function shows our simple brute force algorithmn.
@@ -100,3 +100,5 @@ In main, we called `generateData()`, `bruteForceAttack()`, and `dictionaryAttack
 The "better" algoritm depends on why it is being used. In our demo, we were concerned more with the success rate than the time. In real-world applications, however, hackers would be more inclined to use the dictionary method. Our passwords were randomly generated and so the dictionary attack was less likely to guess them. Real users, however, more often create predictable passwords than can be easily guessed by a dictionary, and would take a long time to crack via brute force. As shown above, the number of permutations for length 4 passwords, all lowercase letters was 358,800, while just going up to length 6 increased the number to 165,765,000. This number would increase even more if the passwords had uppercase letters, numbers, or symbols.
 
 Ultimately, the "better" algorithm is determined by the developer's needs and the context of the problem. 
+
+Link to dictionary used: https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10k-most-common.txt
