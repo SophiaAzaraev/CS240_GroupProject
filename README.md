@@ -84,6 +84,9 @@ In main, we called `generateData()`, `bruteForceAttack()`, and `dictionaryAttack
 ## _Results_ 
 (Amelia)
 Maximum number of operations for brute force = (number of permutations) * (number of passwords)
+Number of permutations = 26!/(26-passwordLength)!
+For length 4: 358,800
+For length 6: 165,765,600
 Maximum number of operations for dictionary = (size of dictionary) * (number of passwords)
 (Sophia - graphs)
 
