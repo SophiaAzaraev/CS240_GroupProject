@@ -53,7 +53,7 @@ The `bruteforceAttack()` function used a recursive call. If the position of the 
 	}
 
 ## _Dictionary attack password cracker_
-The `dictionaryAttack()` method is simple. It looped through each line in the dictionary vector, and if the password matches dictionary.at(i), it returned. If the password goes through the entire vector without a match, the function returned false.
+The `dictionaryAttack()` method is simple. It looped through each line in the dictionary vector, and if the password matches dictionary.at(i), it returned true. If the password goes through the entire vector without a match, the function returned false.
 
 	bool dictionaryAttack(std::vector<std::string>& dict, std::string& password){
 		for(int i = 0; i < dict.size(); i++){
