@@ -99,4 +99,4 @@ In main, we called `generateData()`, `bruteForceAttack()`, and `dictionaryAttack
 ## _Conclusions_
 The "better" algoritm depends on why it is being used. In our demo, we were concerned more with the success rate than the time. In real-world applications, however, hackers would be more inclined to use the dictionary method. Our passwords were randomly generated and so the dictionary attack was less likely to guess them. Real users, however, more often create predictable passwords than can be easily guessed by a dictionary, and would take a long time to crack via brute force. As shown above, the number of permutations for length 4 passwords, all lowercase letters was 358,800, while just going up to length 6 increased the number to 165,765,000. This number would increase even more if the passwords had uppercase letters, numbers, or symbols.
 
-Ultimately, the "better" algorithm is determined by the purpose of its use. 
+Ultimately, the "better" algorithm is determined by the developer's needs and the context of the problem. 
